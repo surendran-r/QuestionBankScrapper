@@ -1,11 +1,19 @@
-var request = require("request"),
-	cheerio = require("cheerio"),
-	url = "http://www.indiabix.com/general-knowledge/basic-general-knowledge/";
+var url = "http://www.indiabix.com/general-knowledge/basic-general-knowledge/";
 	
-request(url, function (error, response, body) {
-	if (!error) {
-		var $ = cheerio.load(body);
-		//Get the question & answer
+
+// Print all of the news items on Hacker News
+var jsdom = require("jsdom");
+var fs = require("fs");
+var jquery = fs.readFileSync("./lib/jquery.js", "utf-8");
+
+jsdom.env({
+  url: url,
+  src: [jquery],
+  done: function (err, window) {
+    var $ = window.$;
+    window.setTimeout(function() {
+    	var $ = window.$;
+	    //Get the question & answer
 		$(".bix-tbl-container").each(function (i, elem) {
 			//Get the question
 			console.log("Q:" + $(elem).find('.bix-td-qtxt').text());
@@ -18,10 +26,8 @@ request(url, function (error, response, body) {
 				console.log("O: " + optionText);
 			});
 			//Get the answer
-			console.log("A: " + $(elem).find('.jq-hdnakqb').text());
-		});
-			
-	} else {
-		console.log("We’ve encountered an error: " + error);
-	}
+			console.log("A: " + $(elem).find('.jq-hdnakqb').html());
+		}, 1000);
+	});
+  }
 });

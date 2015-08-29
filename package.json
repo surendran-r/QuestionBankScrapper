@@ -7,6 +7,6 @@
   "dependencies" : {
     "request"    : "latest",
     "cheerio"    : "latest",
-    "jsdom"      : "< 4.0.0"
+    "jsdom"      : "4.0.0"
   }
 }
