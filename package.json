@@ -1,0 +1,12 @@
+{
+  "name"         : "node-web-scrape",
+  "version"      : "0.0.1",
+  "description"  : "Scrape the webpage for question and answers.",
+  "main"         : "scrapper.js",
+  "author"       : "Scotch",
+  "dependencies" : {
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "jsdom"      : "< 4.0.0"
+  }
+}
